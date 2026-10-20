@@ -1,18 +1,14 @@
 services:
   cors-relay:
-    image: node:22-alpine
+    image: ghcr.io/joshuawowk/cors-relay:latest
     container_name: cors-relay
     restart: unless-stopped
-    command: ["node", "/app/server.js"]
-    working_dir: /app
     environment:
       PORT: "8787"
       TIMEOUT_MS: "10000"
       MAX_BYTES: "5000000"
-      # Empty = relay any public host. Narrow it here if you ever expose this beyond the LAN.
+      # Empty = relay any public host. Narrow it here if you ever expose this beyond your LAN.
       ALLOW_HOSTS: ""
-    volumes:
-      - ./app:/app:ro
     ports:
       - "8787:8787"
     healthcheck:
